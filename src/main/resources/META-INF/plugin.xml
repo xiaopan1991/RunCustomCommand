@@ -11,7 +11,7 @@
 
     <actions>
         <action id="PopAction_ID" class="com.github.xiaopan1991.runcustomcommand.actions.PopAction" text="CustomTest1"
-                description="Test">
+                description="Test" icon="SdkIcons.Sdk_pan_icon">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <override-text place="MainMenu" text="Pop Dialog Action"/>
             <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl T"/>
