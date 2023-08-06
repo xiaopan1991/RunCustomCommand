@@ -8,17 +8,42 @@
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.xiaopan1991.runcustomcommand.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.xiaopan1991.runcustomcommand.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
-    
     <actions>
-        <action class="com.github.xiaopan1991.runcustomcommand.MyAction" id="MyAction">
-            <add-to-group group-id="StructureViewPopupMenu" />
+        <action id="PopAction_ID" class="com.github.xiaopan1991.runcustomcommand.actions.PopAction" text="CustomTest1"
+                description="Test">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <override-text place="MainMenu" text="Pop Dialog Action"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl T"/>
         </action>
+
+        <group id="GroupedActions_1"
+               text="Static Grouped Actions" description="SDK statically grouped action example"
+               popup="true" icon="SdkIcons.Sdk_default_icon">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="PopAction_ID"/>
+            <action id="org.intellij.sdk.action.GroupPopDialogAction"
+                    class="com.github.xiaopan1991.runcustomcommand.actions.PopAction"
+                    text="A Group Action" description="SDK static grouped action example"
+                    icon="SdkIcons.Sdk_default_icon">
+                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl B"/>
+            </action>
+        </group>
+
+        <group id="GroupedActions_2"
+               class="com.github.xiaopan1991.runcustomcommand.actions.DynamicActionGroup"
+               popup="true" text="Dynamically Grouped Actions" description="SDK dynamically grouped action example"
+               icon="SdkIcons.Sdk_default_icon">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="GroupedActions_1"/>
+        </group>
+
+        <group id="org.intellij.sdk.action.CustomDefaultActionGroup"
+               class="com.github.xiaopan1991.runcustomcommand.actions.CustomDefaultActionGroup"
+               popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action id="org.intellij.sdk.action.CustomGroupedAction" class="com.github.xiaopan1991.runcustomcommand.actions.PopAction"
+                    icon="SdkIcons.Sdk_default_icon"/>
+        </group>
+
+
     </actions>
 </idea-plugin>
